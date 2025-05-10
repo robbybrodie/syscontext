@@ -1,8 +1,9 @@
 
 ```mermaid
+```mermaid
 graph TD;
     %% Black-box internal system
-    OpenShift[OpenShift Platform (Black Box)]
+    OpenShift[OpenShift Platform (Black Box)];
 
     %% Human roles
     Developer((Developer))
@@ -42,4 +43,5 @@ graph TD;
     OpenShift -->|Artifact pulls| ArtifactRepo
     OpenShift -->|CMDB updates (auto-discovery)| CMDB
     OpenShift -->|Email alerts| EmailService
+```
 ```

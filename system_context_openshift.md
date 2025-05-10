@@ -1,5 +1,3 @@
-
-```mermaid
 ```mermaid
 graph TD;
     %% Black-box internal system
@@ -43,5 +41,4 @@ graph TD;
     OpenShift -->|Artifact pulls| ArtifactRepo
     OpenShift -->|CMDB updates (auto-discovery)| CMDB
     OpenShift -->|Email alerts| EmailService
-```
 ```

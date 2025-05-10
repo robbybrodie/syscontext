@@ -1,7 +1,5 @@
 ```mermaid
 graph TD
-    %% Black-box internal system
-    OpenShift["OpenShift Platform"]
 
     %% Human roles
     Developer(("Developer"))
@@ -9,35 +7,37 @@ graph TD
     SecurityTeam(("Security Team"))
     Operations(("Operations"))
 
-    %% External systems
-    GitHub["GitHub Enterprise"]
-    Ping["PING Identity"]
-    SplunkSIEM["Splunk SIEM"]
-    SplunkLogging["Splunk Logging"]
-    ServiceNowInc["ServiceNow Incident Management"]
-    ServiceNowReq["ServiceNow Request Management"]
-    Venafi["Venafi Certificate Management"]
-    DNS["Corporate DNS"]
-    Monitoring["Monitoring Platform"]
-    EmailService["Email Notification System"]
-    ArtifactRepo["Artifact Repository"]
-    CMDB["ServiceNow CMDB"]
-
-    %% Interactions
+    %% Group roles near the top
     Developer -->|"CI/CD pipelines, GitOps"| OpenShift
     PlatformAdmin -->|"Cluster config, RBAC"| OpenShift
     SecurityTeam -->|"Security alert review"| OpenShift
     Operations -->|"Ops support & triage"| OpenShift
 
-    OpenShift -->|"OIDC federation via Keycloak"| Ping
-    OpenShift -->|"Log forwarding"| SplunkLogging
-    OpenShift -->|"Security events"| SplunkSIEM
-    OpenShift -->|"Incident tickets"| ServiceNowInc
-    OpenShift -->|"Service requests"| ServiceNowReq
-    OpenShift -->|"Cert issuance via cert-manager"| Venafi
-    OpenShift -->|"DNS registration"| DNS
-    OpenShift -->|"Metrics export"| Monitoring
-    OpenShift -->|"Webhook sync"| GitHub
-    OpenShift -->|"Pull artifacts"| ArtifactRepo
-    OpenShift -->|"CMDB updates"| CMDB
-    OpenShift -->|"Email alerts"| EmailService
+    %% Main system
+    OpenShift["OpenShift Platform"]
+
+    %% External systems (vertical spacing with ordering)
+    OpenShift -->|"OIDC federation via Keycloak"| Ping["PING Identity"]
+
+    OpenShift -->|"Log forwarding"| SplunkLogging["Splunk Logging"]
+
+    OpenShift -->|"Security events"| SplunkSIEM["Splunk SIEM"]
+
+    OpenShift -->|"Incident tickets"| ServiceNowInc["ServiceNow Incident Management"]
+
+    OpenShift -->|"Service requests"| ServiceNowReq["ServiceNow Request Management"]
+
+    OpenShift -->|"Cert issuance via cert-manager"| Venafi["Venafi Certificate Management"]
+
+    OpenShift -->|"DNS registration"| DNS["Corporate DNS"]
+
+    OpenShift -->|"Metrics export"| Monitoring["Monitoring Platform"]
+
+    OpenShift -->|"Webhook sync"| GitHub["GitHub Enterprise"]
+
+    OpenShift -->|"Pull artifacts"| ArtifactRepo["Artifact Repository"]
+
+    OpenShift -->|"CMDB updates"| CMDB["ServiceNow CMDB"]
+
+    OpenShift -->|"Email alerts"| EmailService["Email Notification System"]
+```

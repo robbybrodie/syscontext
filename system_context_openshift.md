@@ -1,3 +1,4 @@
+```mermaid
 graph TD
     %% Black-box internal system
     OpenShift["OpenShift Platform"]

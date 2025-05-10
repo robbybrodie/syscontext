@@ -1,44 +1,45 @@
+
 ```mermaid
-graph TD;
+graph TD
     %% Black-box internal system
-    OpenShift[OpenShift Platform (Black Box)];
+    OpenShift("OpenShift Platform")
 
     %% Human roles
-    Developer((Developer))
-    PlatformAdmin((Platform Admin))
-    SecurityTeam((Security Team))
-    Operations((Operations))
+    Developer(("Developer"))
+    PlatformAdmin(("Platform Admin"))
+    SecurityTeam(("Security Team"))
+    Operations(("Operations"))
 
     %% External systems
-    GitHub[Source Code Repository (GitHub Enterprise)]
-    Ping[PING Identity (Enterprise IAM)]
-    SplunkSIEM[Splunk (SIEM)]
-    SplunkLogging[Splunk (Log Aggregation)]
-    ServiceNowInc[ServiceNow (Incident Management)]
-    ServiceNowReq[ServiceNow (Request Management)]
-    Venafi[Venafi (Certificate Management)]
-    DNS[Corporate DNS]
-    Monitoring[External Monitoring Platform]
-    EmailService[Email Notification System]
-    ArtifactRepo[Artifact Repository (e.g., Nexus/Artifactory)]
-    CMDB[ServiceNow CMDB]
+    GitHub("GitHub Enterprise")
+    Ping("PING Identity")
+    SplunkSIEM("Splunk - SIEM")
+    SplunkLogging("Splunk - Logging")
+    ServiceNowInc("ServiceNow - Incident Management")
+    ServiceNowReq("ServiceNow - Request Management")
+    Venafi("Venafi - Certificate Management")
+    DNS("Corporate DNS")
+    Monitoring("Monitoring Platform")
+    EmailService("Email Notification System")
+    ArtifactRepo("Artifact Repository")
+    CMDB("ServiceNow - CMDB")
 
     %% Interactions
-    Developer -->|CI/CD pipelines, GitOps| OpenShift
-    PlatformAdmin -->|Cluster configuration, RBAC| OpenShift
-    SecurityTeam -->|Review security alerts| OpenShift
-    Operations -->|Operate and triage incidents| OpenShift
+    Developer -->|"CI/CD pipelines, GitOps"| OpenShift
+    PlatformAdmin -->|"Cluster config, RBAC"| OpenShift
+    SecurityTeam -->|"Security alert review"| OpenShift
+    Operations -->|"Ops support & triage"| OpenShift
 
-    OpenShift -->|OIDC Federation via Keycloak| Ping
-    OpenShift -->|Log forwarding| SplunkLogging
-    OpenShift -->|Security alerts & correlation| SplunkSIEM
-    OpenShift -->|Incident ticketing| ServiceNowInc
-    OpenShift -->|Change/Request management| ServiceNowReq
-    OpenShift -->|Certificate requests via cert-manager| Venafi
-    OpenShift -->|ExternalDNS Operator| DNS
-    OpenShift -->|Prometheus Exporters| Monitoring
-    OpenShift -->|Webhook & Source sync| GitHub
-    OpenShift -->|Artifact pulls| ArtifactRepo
-    OpenShift -->|CMDB updates (auto-discovery)| CMDB
-    OpenShift -->|Email alerts| EmailService
+    OpenShift -->|"OIDC federation via Keycloak"| Ping
+    OpenShift -->|"Log forwarding"| SplunkLogging
+    OpenShift -->|"Security events"| SplunkSIEM
+    OpenShift -->|"Incident tickets"| ServiceNowInc
+    OpenShift -->|"Service requests"| ServiceNowReq
+    OpenShift -->|"Cert issuance via cert-manager"| Venafi
+    OpenShift -->|"DNS registration"| DNS
+    OpenShift -->|"Metrics export (Prometheus)"| Monitoring
+    OpenShift -->|"Webhook sync"| GitHub
+    OpenShift -->|"Pull images & artifacts"| ArtifactRepo
+    OpenShift -->|"CMDB updates"| CMDB
+    OpenShift -->|"Alert emails"| EmailService
 ```

@@ -1,6 +1,6 @@
 
 ```mermaid
-graph TD
+graph TD;
     %% Black-box internal system
     OpenShift[OpenShift Platform (Black Box)]
 
